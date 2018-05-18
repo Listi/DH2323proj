@@ -87,27 +87,27 @@ public:
 };
 
 //TEXT
-void drawBitmapText(char *string, float x, float y, float z)
+void drawBitmapText(char *string, float x, float y, float z) //3D font in case we want to add depth
 {
 	char *c;
 	glRasterPos3f(x, y, z);
 
 	for (c = string; *c != '\0'; c++)
 	{
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, *c);
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *c);
 	}
 }
 
-void drawStrokeText(char*string, int x, int y, int z)
+void drawStrokeText(char*string, int x, int y, int z) //Itterates over all the characters and draws them
 {
 	char *c;
 	glPushMatrix();
 	glTranslatef(x, y + 8, z);
-	glScalef(0.09f, -0.08f, z);
+	glScalef(0.15f, -0.15f, z); //Scaling for text
 
 	for (c = string; *c != '\0'; c++)
 	{
-		glutStrokeCharacter(GLUT_STROKE_ROMAN, *c);
+		glutStrokeCharacter(GLUT_STROKE_ROMAN, *c); //displays each character
 	}
 	glPopMatrix();
 }
@@ -135,9 +135,12 @@ void render(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
 
-	glColor3f(0, 1, 0);
-	drawStrokeText((char*)"Move the squares with wasd, rotate them with q & e. Change the square being controlled with z & x. The squares turn green when in the correct position", 200, 200, 0);
-	
+	glColor3f(1, 1, 1);
+	drawStrokeText((char*)"Move and rotate the squares in the right configuration", 0, 10, 0);
+	drawStrokeText((char*)"Move the squares with wasd, rotate them with q & e.", 0, 35, 0);
+	drawStrokeText((char*)"Change the square being controlled with z & x.", 0, 60, 0);
+	drawStrokeText((char*)"The squares turn green when in the correct position.", 0, 85, 0);
+
 	glutSwapBuffers();
 }
 
@@ -259,7 +262,7 @@ int main(int argc, char *argv[])
 	//Window 2
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
 	//create a window and pass through the windows title
-	glutCreateWindow("Instruction"); //Puzzle window
+	glutCreateWindow("Instruction"); //Instruction window
 
 
 
@@ -275,8 +278,9 @@ int main(int argc, char *argv[])
 
 
 	//request a window size of 800 x 800
-	glutInitWindowSize(800, 800);
-	glutReshapeWindow(800, 800);
+	glutInitWindowSize(800, 400);
+	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - 240) / 2, (glutGet(GLUT_SCREEN_HEIGHT) - 680) / 2);
+	glutReshapeWindow(800, 400);
 
 	//sets up our display mode
 	//here we've selected an RGBA display with depth testing
@@ -297,7 +301,10 @@ int main(int argc, char *argv[])
 
 	//request a window size of 800 x 800
 	glutInitWindowSize(800, 800);
+	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - 240) / 2,
+		(glutGet(GLUT_SCREEN_HEIGHT) - 680) / 2);
 	glutReshapeWindow(800, 800);
+	//glutInitWindowPosition(500, 500);
 
 	
 
