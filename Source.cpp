@@ -270,17 +270,18 @@ int main(int argc, char *argv[])
 
 
 									 //tell glut the names of our callback functions point to our
-									 //functions that we defined at the start of this file
+								     //functions that we defined at the start of this file
 
 	glutIdleFunc(render);
 	glutReshapeFunc(reshapeText);
 	glutDisplayFunc(render);
 
 
-	//request a window size of 800 x 800
+	//request a window size of 800 x 400 for the instructions
 	glutInitWindowSize(800, 400);
-	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - 240) / 2, (glutGet(GLUT_SCREEN_HEIGHT) - 680) / 2);
+	//glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - 240) / 2, (glutGet(GLUT_SCREEN_HEIGHT) - 680) / 2); //Moves the window to the start position
 	glutReshapeWindow(800, 400);
+	glutInitWindowPosition(830, 10);//Sets the puzzlewindows startposition
 
 	//sets up our display mode
 	//here we've selected an RGBA display with depth testing
@@ -299,13 +300,12 @@ int main(int argc, char *argv[])
 	glutIdleFunc(idle);
 	glutDisplayFunc(draw);
 
-	//request a window size of 800 x 800
+	//request a window size of 800 x 800 for the puzzle
 	glutInitWindowSize(800, 800);
-	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - 240) / 2,
-		(glutGet(GLUT_SCREEN_HEIGHT) - 680) / 2);
+	//glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - 240) / 2, (glutGet(GLUT_SCREEN_HEIGHT) - 680) / 2); //Moves the window to the start position
 	glutReshapeWindow(800, 800);
-	//glutInitWindowPosition(500, 500);
 
+	
 	
 
 
